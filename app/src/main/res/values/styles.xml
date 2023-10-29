@@ -5,4 +5,9 @@
         <item name="cornerSize">50%</item>
         <item name="color">@color/black</item>
     </style>
+
+    <style name="DialogStyle">
+        <item name="android:background">@drawable/dialog_background</item>
+    </style>
+
 </resources>

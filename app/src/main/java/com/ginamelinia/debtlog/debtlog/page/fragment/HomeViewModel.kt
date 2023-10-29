@@ -1,38 +1,32 @@
 package com.ginamelinia.debtlog.page.fragment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ginamelinia.debtlog.repository.data.Debt
-import kotlinx.coroutines.Dispatchers
+import com.ginamelinia.debtlog.repository.DebtsRepository
+import com.ginamelinia.debtlog.repository.local.room.entity.DebtEntity
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val repository: DebtsRepository
+) : ViewModel() {
 
-    private var i = 0
-    private val debtList: MutableList<Debt> = mutableListOf()
+    val allDebts = repository.selectAllDebts
 
-    private val _debts= MutableLiveData<List<Debt>>()
-    val debts: LiveData<List<Debt>> = _debts
-
-    fun provideData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _debts.postValue(debtList)
+    fun addDebt(debtEntity: DebtEntity) {
+        viewModelScope.launch {
+            repository.addDebt(debtEntity)
         }
     }
 
-    fun formateDate(date: Date): String {
-        return  SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(date)
+    fun updateDebt(debtEntity: DebtEntity) {
+        viewModelScope.launch {
+            repository.updateDebt(debtEntity)
+        }
     }
 
-    fun createDebt() {
-        val debt = Debt("Gina ke-${i + 1}", "Rp${i + 1}", Date())
-        debtList.add(debt)
-        i++
-        _debts.value = debtList.toList()
+    fun deleteDebt(debtEntity: DebtEntity) {
+        viewModelScope.launch {
+            repository.deleteDebt(debtEntity)
+        }
     }
 }

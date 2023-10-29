@@ -9,7 +9,7 @@ import com.ginamelinia.debtlog.repository.local.room.entity.DebtEntity
 abstract class DebtDatabase : RoomDatabase(){
 
     companion object {
-        const val DATABASE_NAME = "noteDB"
+        const val DATABASE_NAME = "debtDB"
     }
-    abstract fun noteDao(): DebtDAO
+    abstract fun debtDao(): DebtDAO
 }
