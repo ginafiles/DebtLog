@@ -38,22 +38,22 @@ class AddDebtDialogFragment() : DialogFragment() {
             val name = binding.edtName.text.toString()
             val moneyAmount = binding.edtMoneyAmount.text.toString()
 
-            // Validasi input
+            // Input validation
             if (name.isEmpty() && moneyAmount.isEmpty()) {
-                // Pesan kesalahan jika kedua input kosong
-                Toast.makeText(requireContext(), "Nama dan jumlah uang tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                // Error message if both inputs are empty
+                Toast.makeText(requireContext(), "Name and money amount cannot be empty!", Toast.LENGTH_SHORT).show()
             } else if (name.isEmpty()) {
-                // Pesan kesalahan jika nama kosong
-                Toast.makeText(requireContext(), "Nama tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                // Error message if name is empty
+                Toast.makeText(requireContext(), "Name and money cannot be empty!", Toast.LENGTH_SHORT).show()
             } else if (moneyAmount.isEmpty()) {
-                // Pesan kesalahan jika jumlah uang kosong
-                Toast.makeText(requireContext(), "Jumlah uang tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                // Error message if the amount of money is empty
+                Toast.makeText(requireContext(), "Money amount cannot be empty!", Toast.LENGTH_SHORT).show()
             } else {
-                // Tambahkan data ke basis data menggunakan view model
+                // Add data to the database using the view model
                 val newDebt = DebtEntity(id = 0, name = name, moneyAmount = moneyAmount)
                 homeViewModel.addDebt(newDebt)
 
-                // Tutup dialog ketika utang ditambahkan
+                // Close dialog when debt is added
                 dismiss()
             }
         }

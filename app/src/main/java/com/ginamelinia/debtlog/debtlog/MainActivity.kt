@@ -1,5 +1,6 @@
 package com.ginamelinia.debtlog
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -18,6 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_container) as NavHostFragment
         navController = navHostFragment.navController
+
+        val isLoggedIn = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE).getBoolean("isLoggedIn", false)
+
+        if (!isLoggedIn) {
+            navController.navigate(R.id.registerFragment)
+        } else {
+            navController.navigate(R.id.homeFragment)
+        }
 
     }
 

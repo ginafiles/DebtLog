@@ -6,7 +6,7 @@ import com.ginamelinia.debtlog.repository.local.room.dao.DebtDAO
 import com.ginamelinia.debtlog.repository.local.room.entity.DebtEntity
 
 @Database(entities = [DebtEntity::class], version = 1)
-abstract class DebtDatabase : RoomDatabase(){
+abstract class DebtLogDatabase : RoomDatabase(){
 
     companion object {
         const val DATABASE_NAME = "debtDB"

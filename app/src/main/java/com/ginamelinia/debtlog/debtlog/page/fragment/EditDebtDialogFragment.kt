@@ -46,7 +46,7 @@ class EditDebtDialogFragment : DialogFragment() {
             val moneyAmount = binding.edtMoneyAmount.text.toString()
 
             if (name.isEmpty() || moneyAmount.isEmpty()) {
-                Toast.makeText(requireContext(), "Nama dan jumlah uang tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Name and money amount cannot be blank!", Toast.LENGTH_SHORT).show()
             } else {
                 val updatedDebtEntity = DebtEntity(debtEntity.id, name, moneyAmount)
                 homeViewModel.updateDebt(updatedDebtEntity)
